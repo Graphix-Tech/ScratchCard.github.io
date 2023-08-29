@@ -8,7 +8,7 @@ $("#card").wScratchPad({
 });
 */
 
-const cardContainer = document.getElementById("card");
+/*const cardContainer = document.getElementById("card");
 
 // Create an array of image URLs
 const imageUrls = [
@@ -48,4 +48,28 @@ function startScratchCard() {
 
 // Initialize the scratch card
 startScratchCard();
+*/
+
+// This code should come before the scratch card initialization
+let isRevealed = false; // Flag to track whether the scratch card has been revealed
+
+// The following code initializes the scratch card with the shuffling images and reveal logic
+$(document).ready(function () {
+  const numImages = 4; // Number of available images
+  const randomImageIndex = Math.floor(Math.random() * numImages) + 1;
+
+  $("#card").wScratchPad({
+    size: 100, // The size of the brush/scratch.
+    bg: `Images/Gpay_Card ${randomImageIndex}.jpg`, // Background image path.
+    fg: `Images/front.jpg`, // Foreground image path.
+    cursor: "pointer", // Set cursor.
+    scratchUp: function () {
+      if (!isRevealed) {
+        isRevealed = true;
+        // Add any action you want to perform when the scratch card is revealed
+        alert("Scratch card revealed!");
+      }
+    },
+  });
+});
 
